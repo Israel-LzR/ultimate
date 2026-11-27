@@ -1,0 +1,179 @@
+@{
+    ViewData["Title"] = "Administrar";
+}
+
+<main class="py-4">
+    <h1>Administración</h1>
+    <p>Aquí se crean, consultan, modifican y eliminan los animales, se gestionan las solicitudes de adopción y se administran las donaciones.</p>
+
+    <p id="admin-msg" class="fw-bold" style="display:none;"></p>
+
+    <section class="mb-5">
+        <h2 id="titulo-form">Nuevo animal</h2>
+        <form id="form-animal" class="row g-2">
+            <div class="col-md-4">
+                <label for="a-nombre" class="form-label">Nombre</label>
+                <input id="a-nombre" class="form-control" required />
+            </div>
+            <div class="col-md-2">
+                <label for="a-especie" class="form-label">Especie</label>
+                <select id="a-especie" class="form-select">
+                    <option value="Perro">Perro</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="a-raza" class="form-label">Raza (opcional)</label>
+                <input id="a-raza" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label for="a-edad" class="form-label">Edad en meses</label>
+                <input id="a-edad" type="number" min="0" max="360" class="form-control" required />
+            </div>
+            <div class="col-md-2">
+                <label for="a-sexo" class="form-label">Sexo</label>
+                <select id="a-sexo" class="form-select">
+                    <option value="Macho">Macho</option>
+                    <option value="Hembra">Hembra</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="a-tamano" class="form-label">Tamaño</label>
+                <select id="a-tamano" class="form-select">
+                    <option value="Pequeno">Pequeño</option>
+                    <option value="Mediano">Mediano</option>
+                    <option value="Grande">Grande</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="a-color" class="form-label">Color (opcional)</label>
+                <input id="a-color" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label for="a-ciudad" class="form-label">Ciudad</label>
+                <input id="a-ciudad" class="form-control" required />
+            </div>
+            <div class="col-md-2">
+                <label for="a-estado" class="form-label">Estado</label>
+                <select id="a-estado" class="form-select">
+                    <option value="Disponible">Disponible</option>
+                    <option value="EnProceso">En proceso</option>
+                    <option value="Adoptado">Adoptado</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <label for="a-descripcion" class="form-label">Descripción</label>
+                <textarea id="a-descripcion" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="col-md-6" id="grupo-foto">
+                <label for="a-foto" class="form-label">URL de la foto (solo al crear)</label>
+                <input id="a-foto" class="form-control" placeholder="/imagenes/max.jpg" />
+            </div>
+            <div class="col-md-6 d-flex align-items-end gap-3">
+                <div class="form-check"><input id="a-esterilizado" type="checkbox" class="form-check-input" /><label for="a-esterilizado" class="form-check-label">Esterilizado</label></div>
+                <div class="form-check"><input id="a-vacunado" type="checkbox" class="form-check-input" /><label for="a-vacunado" class="form-check-label">Vacunado</label></div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar animal</button>
+                <button type="button" class="btn btn-secondary" id="btn-cancelar" style="display:none;">Cancelar edición</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="mb-5">
+        <h2>Animales registrados</h2>
+        <div class="table-responsive">
+            <table class="table table-sm align-middle">
+                <thead><tr><th>Id</th><th>Nombre</th><th>Especie</th><th>Edad (meses)</th><th>Estado</th><th></th></tr></thead>
+                <tbody id="tabla-animales"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="mb-5">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h2 class="mb-0">Administrador de donaciones</h2>
+            <button type="button" id="btn-actualizar-donaciones" class="btn btn-outline-primary btn-sm">↻ Actualizar</button>
+        </div>
+
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #1d3557, #2a5298); color: #fff;">
+                    <div class="card-body">
+                        <div class="small text-uppercase" style="opacity: .8;">Fondo total del refugio</div>
+                        <div id="don-fondo" class="display-5 fw-bold">$0.00</div>
+                        <div class="small" style="opacity: .8;">Saldo inicial + todas las donaciones</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-2">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="small text-muted">Saldo inicial</div>
+                        <div id="don-inicial" class="fs-5 fw-bold">$0.00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-2">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="small text-muted">Total donado</div>
+                        <div id="don-total" class="fs-5 fw-bold text-success">$0.00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-2">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="small text-muted">Donaciones</div>
+                        <div id="don-cantidad" class="fs-5 fw-bold">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-sm align-middle">
+                <thead><tr><th>Id</th><th>Donante</th><th>Monto</th><th>Fecha</th><th>ID transacción</th><th>Estado</th></tr></thead>
+                <tbody id="tabla-donaciones"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h2>Solicitudes de adopción</h2>
+
+        <form id="form-buscar" class="row g-2 mb-3">
+            <div class="col-md-6">
+                <label for="buscar-texto" class="form-label visually-hidden">Buscar solicitudes</label>
+                <input id="buscar-texto" class="form-control" maxlength="100" placeholder="Buscar por nombre, correo, teléfono, mensaje, cuestionario o id..." />
+            </div>
+            <div class="col-md-3">
+                <label for="buscar-estado" class="form-label visually-hidden">Estado</label>
+                <select id="buscar-estado" class="form-select">
+                    <option value="">Todos los estados</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Aprobada">Aprobada</option>
+                    <option value="Rechazada">Rechazada</option>
+                </select>
+            </div>
+            <div class="col-md-3 d-flex gap-2">
+                <button type="submit" id="btn-buscar" class="btn btn-primary">🔍 Buscar</button>
+                <button type="button" id="btn-limpiar" class="btn btn-outline-secondary">Limpiar</button>
+            </div>
+        </form>
+        <p id="buscar-info" class="text-muted small"></p>
+
+        <div class="table-responsive">
+            <table class="table table-sm align-middle">
+                <thead><tr><th>Id</th><th>Animal</th><th>Solicitante</th><th>Correo</th><th>Teléfono</th><th>Mensaje</th><th>Cuestionario</th><th>Fecha</th><th>Estado</th><th></th></tr></thead>
+                <tbody id="tabla-solicitudes"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+@section Scripts {
+    <script src="~/js/admin.js" asp-append-version="true"></script>
+}

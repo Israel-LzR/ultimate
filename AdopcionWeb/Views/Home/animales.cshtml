@@ -1,0 +1,113 @@
+@{
+    ViewData["Title"] = "Animales";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/animales.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/cuestionario.css" asp-append-version="true" />
+}
+
+<main class="animales-container">
+    <header class="animales-header">
+        <p class="subtitulo">CONOCE A TUS POSIBLES COMPAÑEROS</p>
+        <h1>Patitas buscando hogar</h1>
+        <p>Conoce a nuestros animales que esperan encontrar una familia.</p>
+    </header>
+
+    <section class="seccion-filtros">
+        <h2>Encuentra a tu compañero</h2>
+        <div class="filtros-container">
+            <button type="button" id="btn-todos" class="btn-filtro activo" data-filtro="todos">Todos</button>
+            <button type="button" id="btn-perritos" class="btn-filtro" data-filtro="Perro">Perritos</button>
+            <button type="button" id="btn-gatitos" class="btn-filtro" data-filtro="Gato">Gatitos</button>
+        </div>
+    </section>
+
+    <!-- Las tarjetas se generan con JavaScript a partir de GET /api/AnimalApi -->
+    <section class="grid-animales" id="grid-animales">
+        <p id="estado-carga">Cargando animales...</p>
+    </section>
+</main>
+
+<!-- Formulario de solicitud de adopción (modal de Bootstrap) -->
+<div class="modal fade" id="modal-solicitud" tabindex="-1" aria-labelledby="titulo-modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="form-solicitud">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo-modal">Solicitud de adopción</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="solicitud-animal-id" />
+
+                    <!-- PASO 1: cuestionario de aptitud (obligatorio para cada solicitud) -->
+                    <div id="paso-cuestionario">
+                        <p class="text-muted">
+                            Antes de enviar tu solicitud contesta este breve cuestionario.
+                            Debes salir <strong>apto</strong> para continuar.
+                        </p>
+                        <p id="cq-error" class="text-danger fw-bold" style="display:none;"></p>
+
+                        <div id="cq-lista" class="lista-preguntas">
+                            <p class="cargando">Cargando preguntas...</p>
+                        </div>
+
+                        <div class="cuestionario-acciones">
+                            <span id="cq-contador" class="contador"></span>
+                            <button type="button" id="cq-evaluar" class="btn-evaluar">Ver mi resultado</button>
+                        </div>
+
+                        <section id="cq-resultado" class="resultado" style="display:none;" aria-live="polite">
+                            <div id="cq-badge" class="resultado-badge"></div>
+                            <h2 id="cq-titulo"></h2>
+                            <p id="cq-porcentaje" class="resultado-porcentaje"></p>
+                            <p id="cq-mensaje"></p>
+                            <div id="cq-recomendaciones" class="resultado-recomendaciones" style="display:none;">
+                                <h3>Recomendaciones</h3>
+                                <ul id="cq-lista-recomendaciones"></ul>
+                            </div>
+                            <div class="resultado-botones">
+                                <button type="button" id="cq-continuar" class="btn-resultado-principal" style="display:none;">Continuar con la solicitud →</button>
+                                <button type="button" id="cq-reintentar" class="btn-resultado-secundario">Volver a contestar</button>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- PASO 2: formulario de solicitud (solo si salió apto) -->
+                    <div id="paso-formulario" style="display:none;">
+                    <p id="solicitud-apto" class="alert alert-success py-2"></p>
+
+                    <div class="mb-3">
+                        <label for="solicitud-nombre" class="form-label">Nombre completo</label>
+                        <input type="text" id="solicitud-nombre" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="solicitud-correo" class="form-label">Correo</label>
+                        <input type="email" id="solicitud-correo" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="solicitud-telefono" class="form-label">Teléfono (opcional)</label>
+                        <input type="tel" id="solicitud-telefono" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="solicitud-mensaje" class="form-label">Cuéntanos de ti (opcional)</label>
+                        <textarea id="solicitud-mensaje" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <p id="solicitud-error" class="text-danger fw-bold" style="display:none;"></p>
+                    <p id="solicitud-ok" class="text-success fw-bold" style="display:none;"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-enviar-solicitud" style="display:none;">Enviar solicitud</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/animales.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "Donaciones";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/donaciones.css" asp-append-version="true" />
+}
+<main class="donaciones-container">
+    <header class="donaciones-header">
+        <mark class="donaciones-badge">♡ TU AYUDA IMPORTA</mark>
+        <h1>Realiza tu Donación</h1>
+        <p>Tu contribución ayuda a alimentar y cuidar a nuestras mascotas rescatadas.</p>
+    </header>
+
+    <div class="donaciones-grid">
+        <section class="card-donacion">
+            <form id="form-donacion" asp-controller="Home" asp-action="Donaciones" method="post">
+                <fieldset>
+                    <legend>Información del Donante</legend>
+
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Ej. Ana Pérez" />
+
+                    <div class="espacio-campos"></div>
+
+                    <label for="monto">Selecciona un monto:</label>
+                    <select id="monto" name="donacion" required>
+                        <option value="">-- Selecciona una cantidad --</option>
+                        <option value="100">$100 MXN</option>
+                        <option value="250">$250 MXN</option>
+                        <option value="500">$500 MXN</option>
+                    </select>
+                </fieldset>
+
+                <button type="submit" class="btn-donar">Confirmar Donación</button>
+            </form>
+
+            <p id="error-donacion" class="error-donacion" style="display: none;">
+                Por favor, completa todos los campos requeridos.
+            </p>
+
+            <!-- Área donde JavaScript mostrará los datos del objeto en pantalla -->
+            <article id="confirmacion-resumen" style="display: none;">
+                <h2>¡Gracias por tu apoyo!</h2>
+                <p id="resumen-texto"></p>
+            </article>
+        </section>
+
+        <aside class="info-donacion">
+            <h2>¿A dónde va tu donación?</h2>
+            <ul class="destinos">
+                <li>
+                    <span class="destino-icono" aria-hidden="true">🍖</span>
+                    <div>
+                        <strong>Alimento</strong>
+                        <p>Croquetas y comida diaria para perros y gatos rescatados.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="destino-icono" aria-hidden="true">💉</span>
+                    <div>
+                        <strong>Vacunas y salud</strong>
+                        <p>Vacunación, desparasitación y atención veterinaria.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="destino-icono" aria-hidden="true">🏠</span>
+                    <div>
+                        <strong>Refugio y cuidados</strong>
+                        <p>Camas, limpieza y espacios seguros mientras encuentran familia.</p>
+                    </div>
+                </li>
+            </ul>
+            <p class="nota-donacion">Cada donación recibe un ID de transacción para que puedas darle seguimiento.</p>
+        </aside>
+    </div>
+</main>
+
+@section Scripts {
+    <script src="~/js/donaciones.js" asp-append-version="true"></script>
+}

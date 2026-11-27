@@ -1,0 +1,175 @@
+/* ==========================================
+   ESTILOS PARA LA VISTA DE PROCESO
+   ========================================== */
+.proceso-container {
+    max-width: 1000px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+}
+
+.proceso-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+}
+
+.proceso-badge {
+    background-color: #ffe5ec;
+    color: #d80032;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.proceso-header h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #1d3557;
+    margin-bottom: 0.8rem;
+}
+
+.proceso-header p {
+    color: #64748b;
+    font-size: 1.05rem;
+}
+
+/* Tarjetas de pasos */
+.proceso-pasos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    position: relative;
+}
+
+.paso-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.2rem 1.8rem 1.8rem;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .paso-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(29, 53, 87, 0.12);
+    }
+
+    .paso-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 24px;
+        right: 24px;
+        height: 4px;
+        border-radius: 0 0 6px 6px;
+        background: linear-gradient(90deg, #0288d1, #e63946);
+    }
+
+.paso-numero {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #e2e8f0;
+}
+
+.paso-icono {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border-radius: 50%;
+    background: #eaf4fb;
+}
+
+.paso-card:nth-child(2) .paso-icono {
+    background: #ffe5ec;
+}
+
+.paso-card:nth-child(3) .paso-icono {
+    background: #e8f5e9;
+}
+
+.paso-card h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1d3557;
+    margin-bottom: 0.6rem;
+}
+
+.paso-card p {
+    color: #4a5568;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Llamado a la acción */
+.proceso-cta {
+    margin-top: 3rem;
+    text-align: center;
+    background: linear-gradient(135deg, #1d3557, #2a5298);
+    color: #ffffff;
+    border-radius: 24px;
+    padding: 2.5rem 1.5rem;
+    box-shadow: 0 10px 26px rgba(29, 53, 87, 0.25);
+}
+
+    .proceso-cta h2 {
+        font-size: 1.7rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+    }
+
+    .proceso-cta p {
+        color: #dbe7f5;
+        margin-bottom: 1.5rem;
+    }
+
+.proceso-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+}
+
+.btn-proceso-principal, .btn-proceso-secundario {
+    padding: 0.8rem 1.6rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-proceso-principal {
+    background: #e63946;
+    color: #ffffff;
+}
+
+    .btn-proceso-principal:hover {
+        background: #c1121f;
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
+.btn-proceso-secundario {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+    .btn-proceso-secundario:hover {
+        background: #ffffff;
+        color: #1d3557;
+        transform: translateY(-2px);
+    }

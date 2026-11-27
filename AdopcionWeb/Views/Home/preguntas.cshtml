@@ -1,0 +1,82 @@
+@{
+    ViewData["Title"] = "Preguntas frecuentes";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/preguntas.css" asp-append-version="true" />
+}
+<main class="faq-container">
+    <header class="faq-header">
+        <mark class="faq-badge">💬 ESTAMOS PARA ORIENTARTE</mark>
+        <h1>Dudas frecuentes</h1>
+        <p>
+            ¿Tienes preguntas antes de dar el paso?
+            Aquí tienes una guía breve para empezar.
+        </p>
+    </header>
+
+    <section class="faq-list">
+        <details>
+            <summary>¿Adoptar tiene algún costo?</summary>
+            <p>
+                Algunos refugios pueden solicitar una cuota
+                de recuperación para cubrir gastos médicos,
+                vacunas y cuidados. Esa cuota no es un pago por el animal:
+                ayuda a que el refugio pueda rescatar a otros.
+            </p>
+        </details>
+
+        <details>
+            <summary>¿Qué necesito antes de adoptar?</summary>
+            <p>
+                Necesitas contar con un espacio seguro,
+                tiempo, alimento y disposición para cuidar
+                a tu nueva mascota. También es importante que todas las
+                personas de tu hogar estén de acuerdo con su llegada.
+            </p>
+        </details>
+
+        <details>
+            <summary>¿Cómo sé si un animal es compatible conmigo?</summary>
+            <p>
+                Puedes conocer su personalidad y necesidades
+                antes de tomar una decisión. Revisa su edad, tamaño y
+                descripción en cada perfil. Además, al darle «Me interesa» a un animal
+                contestarás un breve cuestionario que te dice si estás listo para adoptar
+                y qué puedes mejorar.
+            </p>
+        </details>
+
+        <details>
+            <summary>¿Cómo puedo donar de forma segura?</summary>
+            <p>
+                Contacta directamente con el refugio y utiliza
+                únicamente sus medios oficiales. Desde la sección de
+                <a asp-controller="Home" asp-action="Donaciones">Donaciones</a>
+                recibirás un ID de transacción para dar seguimiento a tu aportación.
+            </p>
+        </details>
+
+        <details>
+            <summary>¿Qué pasa después de enviar mi solicitud?</summary>
+            <p>
+                Para enviarla necesitas iniciar sesión y salir «apto» en el cuestionario del animal. Tu solicitud queda como
+                «Pendiente» hasta que el refugio la revise; después puede aparecer como
+                «Aprobada» o «Rechazada». Puedes ver su estado en «Mi cuenta», en la
+                sección «Mis solicitudes».
+            </p>
+        </details>
+
+        <details>
+            <summary>¿Los animales están vacunados y esterilizados?</summary>
+            <p>
+                En cada perfil se indica si el animal está vacunado o esterilizado.
+                Si todavía no lo está, el refugio te orientará sobre cuándo y cómo hacerlo,
+                porque ayuda a cuidar su salud.
+            </p>
+        </details>
+    </section>
+</main>
+@section Scripts {
+    <script src="~/js/preguntas.js" asp-append-version="true"></script>
+}

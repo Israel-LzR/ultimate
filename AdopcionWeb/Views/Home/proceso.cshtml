@@ -1,0 +1,60 @@
+@{
+    ViewData["Title"] = "Proceso de adopción";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/proceso.css" asp-append-version="true" />
+}
+
+<main class="proceso-container">
+    <header class="proceso-header">
+        <mark class="proceso-badge">🐾 UN PROCESO CON CARIÑO</mark>
+        <h1>¿Cómo empieza una adopción?</h1>
+        <p>
+            Adoptar es una decisión para toda la vida.
+            Tómate el tiempo de conocer y preparar a tu familia.
+        </p>
+    </header>
+
+    <section class="proceso-pasos" aria-label="Pasos de la adopción">
+        <article class="paso-card">
+            <span class="paso-numero">01</span>
+            <div class="paso-icono" aria-hidden="true">🔍</div>
+            <h2>Conoce</h2>
+            <p>
+                Explora los perfiles y piensa qué compañero
+                se adapta a tu hogar, tus tiempos y tu estilo de vida.
+            </p>
+        </article>
+
+        <article class="paso-card">
+            <span class="paso-numero">02</span>
+            <div class="paso-icono" aria-hidden="true">💬</div>
+            <h2>Platiquemos</h2>
+            <p>
+                Cuéntanos un poco de ti. El refugio puede
+                resolver tus dudas y explicarte los requisitos.
+            </p>
+        </article>
+
+        <article class="paso-card">
+            <span class="paso-numero">03</span>
+            <div class="paso-icono" aria-hidden="true">🏡</div>
+            <h2>Prepara su llegada</h2>
+            <p>
+                Organiza un espacio seguro, alimento,
+                cuidados veterinarios y mucho tiempo
+                para acompañarlo.
+            </p>
+        </article>
+    </section>
+
+    <section class="proceso-cta">
+        <h2>¿Listo para dar el siguiente paso?</h2>
+        <p>Conoce a nuestros animales. Al darle «Me interesa» a uno, contestarás un breve cuestionario para saber si estás listo para adoptar.</p>
+        <div class="proceso-botones">
+            <a asp-controller="Home" asp-action="Animales" class="btn-proceso-principal">Conocer animales →</a>
+            <a asp-controller="Home" asp-action="Preguntas" class="btn-proceso-secundario">Ver preguntas frecuentes</a>
+        </div>
+    </section>
+</main>

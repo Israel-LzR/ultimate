@@ -1,0 +1,101 @@
+@{
+    ViewData["Title"] = "Mi cuenta";
+    var requerido = Context.Request.Query.ContainsKey("requerido");
+}
+
+<main class="py-4" style="max-width: 820px; margin: 0 auto;">
+    <h1 class="mb-3">Mi cuenta</h1>
+
+    @if (requerido)
+    {
+        <div class="alert alert-warning" role="alert">
+            Necesitas iniciar sesión (con una cuenta de administrador para la zona de administración) para continuar.
+        </div>
+    }
+
+    <div id="sesion-estado" class="alert alert-secondary" role="status">
+        Consultando sesión...
+    </div>
+
+    <p id="sesion-error" class="text-danger fw-bold" style="display: none;"></p>
+
+    <!-- Sin sesión: iniciar o crear cuenta -->
+    <div id="zona-acceso" class="row g-4">
+        <div class="col-md-6">
+            <h2 class="h4 mb-3">Iniciar sesión</h2>
+
+            <form id="form-login">
+                <div class="mb-2">
+                    <label for="login-usuario" class="form-label">Usuario</label>
+                    <input id="login-usuario"
+                           class="form-control"
+                           autocomplete="username"
+                           required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="login-contrasena" class="form-label">Contraseña</label>
+                    <input id="login-contrasena"
+                           type="password"
+                           class="form-control"
+                           autocomplete="current-password"
+                           required />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <h2 class="h4 mb-3">Crear cuenta para adoptar</h2>
+
+            <form id="form-registro">
+                <div class="mb-2">
+                    <label for="reg-usuario" class="form-label">Usuario</label>
+                    <input id="reg-usuario"
+                           class="form-control"
+                           autocomplete="username"
+                           required />
+                </div>
+
+                <div class="mb-2">
+                    <label for="reg-correo" class="form-label">Correo</label>
+                    <input id="reg-correo"
+                           type="email"
+                           class="form-control"
+                           autocomplete="email"
+                           required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="reg-contrasena" class="form-label">
+                        Contraseña (mínimo 8, con letra y número)
+                    </label>
+                    <input id="reg-contrasena"
+                           type="password"
+                           class="form-control"
+                           autocomplete="new-password"
+                           required />
+                </div>
+
+                <button type="submit" class="btn btn-success">Crear cuenta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Con sesión -->
+    <div id="zona-sesion" style="display: none;">
+        <button type="button" id="btn-cerrar-sesion" class="btn btn-outline-danger mb-4">
+            Cerrar sesión
+        </button>
+
+        <div id="bloque-mis-solicitudes">
+            <h2 class="h4 mb-3">Mis solicitudes de adopción</h2>
+            <ul id="lista-mis-solicitudes" class="list-group"></ul>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script src="~/js/sesion.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AdopcionWeb/AdopcionWeb.csproj" />
+  <Project Path="Aplicacion/Aplicacion.csproj" />
+  <Project Path="Dominio/Dominio.csproj" />
+  <Project Path="Infraestuctura/Infraestuctura.csproj" />
+</Solution>
